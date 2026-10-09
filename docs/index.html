@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="data:,">
+  <title>دموی محاسبه‌گر هزینه پروژه</title>
+  <style>
+    :root { color-scheme: light dark; --ce-primary: #4f46e5; }
+    body { margin: 0; padding: 16px; font-family: Vazirmatn, Tahoma, system-ui, sans-serif; background: #eef1f7; color: #151a2d; }
+    body.dark { background: #0b0d14; color: #eef1f9; }
+    @media (prefers-color-scheme: dark) { body:not(.light) { background: #0b0d14; color: #eef1f9; } }
+    .wrap { max-width: 980px; margin: 0 auto; }
+    .bar { display: flex; gap: 8px; align-items: center; margin-bottom: 12px; flex-wrap: wrap; }
+    .bar button { padding: 6px 14px; border-radius: 99px; border: 1px solid #8884; background: transparent; color: inherit; cursor: pointer; font: inherit; }
+    .note { font-size: .8rem; opacity: .7; margin-top: 12px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="bar">
+      <strong>دموی زنده</strong>
+      <button id="light" type="button">روشن</button>
+      <button id="dark" type="button">تیره</button>
+      <button id="auto" type="button">خودکار</button>
+    </div>
+    <cost-estimator id="est" config-url="./estimator.json"></cost-estimator>
+    <p class="note">در این دمو سرور واقعی وجود ندارد؛ درخواست POST با یک stub محلی پاسخ داده می‌شود. برای دیدن پیام خطا، <code>?fail=1</code> را به آدرس اضافه کنید.</p>
+  </div>
+  <script>
+    // Demo-only: stub the lead endpoint so the form flow can be shown without a backend.
+    const realFetch = window.fetch.bind(window);
+    window.fetch = (url, opts) => {
+      if (String(url).includes('/api/estimate-lead')) {
+        console.log('POST payload:', opts.body);
+        const fail = new URLSearchParams(location.search).has('fail');
+        return new Promise((r) => setTimeout(() => r(new Response('{}', { status: fail ? 500 : 200 })), 700));
+      }
+      return realFetch(url, opts);
+    };
+    const est = document.getElementById('est');
+    const body = document.body;
+    const set = (m) => { body.classList.remove('light', 'dark'); if (m) body.classList.add(m); m ? est.setAttribute('theme', m) : est.removeAttribute('theme'); };
+    light.onclick = () => set('light'); dark.onclick = () => set('dark'); auto.onclick = () => set('');
+  </script>
+  <script src="./cost-estimator.js"></script>
+</body>
+</html>

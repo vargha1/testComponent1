@@ -1,0 +1,17 @@
+{
+  "name": "cost-estimator",
+  "version": "1.0.0",
+  "description": "Framework-free <cost-estimator> custom element: interactive project price/time estimator (RTL, Persian).",
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "serve": "node scripts/serve.mjs"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.0",
+    "typescript": "^5.6.0",
+    "vitest": "^3.0.0"
+  }
+}

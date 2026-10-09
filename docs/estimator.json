@@ -1,0 +1,83 @@
+{
+  "defaultUrgency": "normal",
+  "currencyUnit": "میلیون تومان",
+  "range": { "low": 0.9, "high": 1.25 },
+  "roundTo": 0.5,
+  "submit": { "url": "/api/estimate-lead", "method": "POST" },
+  "texts": {
+    "title": "محاسبه‌گر هزینه و زمان پروژه",
+    "subtitle": "در چند کلیک، بازه‌ی تقریبی قیمت و زمان پروژه‌ات را ببین.",
+    "stepOf": "مرحله {n} از {total}",
+    "next": "مرحله بعد",
+    "back": "بازگشت",
+    "submit": "ثبت و دریافت مشاوره رایگان",
+    "submitting": "در حال ارسال…",
+    "estimateLabel": "برآورد هزینه",
+    "timeLabel": "زمان تحویل",
+    "weeks": "هفته",
+    "to": "تا",
+    "summaryTitle": "خلاصه انتخاب‌ها",
+    "summaryEmpty": "هنوز چیزی انتخاب نشده است.",
+    "nothingSelected": "بدون امکانات اضافه",
+    "loading": "در حال بارگذاری…",
+    "loadError": "بارگذاری محاسبه‌گر ممکن نشد. لطفاً صفحه را دوباره باز کنید.",
+    "nameLabel": "نام و نام خانوادگی",
+    "mobileLabel": "شماره موبایل",
+    "mobileHint": "مثال: ۰۹۱۲۳۴۵۶۷۸۹",
+    "nameError": "لطفاً نام خود را وارد کنید.",
+    "mobileError": "شماره موبایل معتبر نیست؛ باید با ۰۹ شروع شود و ۱۱ رقم باشد.",
+    "successTitle": "درخواست شما ثبت شد",
+    "successBody": "کارشناسان ما به‌زودی با شما تماس می‌گیرند.",
+    "submitError": "ارسال انجام نشد. اتصال اینترنت را بررسی کنید و دوباره تلاش کنید.",
+    "restart": "محاسبه‌ی دوباره",
+    "increase": "افزایش",
+    "decrease": "کاهش",
+    "disclaimer": "این عدد برآورد اولیه است و قیمت نهایی پس از بررسی نیازمندی‌ها اعلام می‌شود.",
+    "steps": {
+      "type": { "title": "چه پروژه‌ای در ذهن داری؟", "hint": "نوع پروژه را انتخاب کن." },
+      "features": { "title": "چه امکاناتی لازم داری؟", "hint": "هر تعداد که لازم است انتخاب کن؛ می‌توانی رد شوی." },
+      "scale": { "title": "حجم پروژه", "hint": "با دکمه‌ها یا اسلایدر تنظیم کن." },
+      "urgency": { "title": "چقدر عجله داری؟", "hint": "زمان کوتاه‌تر یعنی منابع بیشتر و هزینه بیشتر." },
+      "contact": { "title": "اطلاعات تماس", "hint": "برای ارسال برآورد دقیق‌تر و هماهنگی." }
+    }
+  },
+  "projectTypes": [
+    {
+      "id": "corporate", "title": "سایت شرکتی", "description": "معرفی کسب‌وکار، نمونه‌کار و تماس", "icon": "globe",
+      "basePrice": 25, "baseWeeks": 3,
+      "scale": { "label": "تعداد صفحه", "unit": "صفحه", "min": 3, "max": 40, "step": 1, "default": 6, "included": 5, "pricePerUnit": 1.2, "weeksPerUnit": 0.2 }
+    },
+    {
+      "id": "shop", "title": "فروشگاه اینترنتی", "description": "کاتالوگ محصول، سبد خرید و پرداخت", "icon": "cart",
+      "basePrice": 70, "baseWeeks": 8,
+      "scale": { "label": "تعداد صفحه", "unit": "صفحه", "min": 5, "max": 60, "step": 1, "default": 10, "included": 8, "pricePerUnit": 1.5, "weeksPerUnit": 0.2 }
+    },
+    {
+      "id": "mobile", "title": "اپلیکیشن موبایل", "description": "اندروید و iOS", "icon": "phone",
+      "basePrice": 150, "baseWeeks": 14,
+      "scale": { "label": "تعداد صفحه (صفحه‌ی اپ)", "unit": "صفحه", "min": 5, "max": 50, "step": 1, "default": 12, "included": 10, "pricePerUnit": 3.5, "weeksPerUnit": 0.4 }
+    },
+    {
+      "id": "enterprise", "title": "نرم‌افزار سازمانی", "description": "اتوماسیون و پنل‌های مدیریتی", "icon": "building",
+      "basePrice": 250, "baseWeeks": 20,
+      "scale": { "label": "تعداد نقش کاربری", "unit": "نقش", "min": 1, "max": 20, "step": 1, "default": 3, "included": 3, "pricePerUnit": 12, "weeksPerUnit": 1 }
+    }
+  ],
+  "features": [
+    { "id": "payment", "title": "درگاه پرداخت", "description": "پرداخت آنلاین امن", "icon": "card", "price": 6, "weeks": 0.5, "types": ["corporate", "shop", "mobile"] },
+    { "id": "auth", "title": "ورود و ثبت‌نام", "description": "حساب کاربری با پیامک", "icon": "user", "price": 8, "weeks": 1 },
+    { "id": "dashboard", "title": "داشبورد گزارش", "description": "نمودار و آمار", "icon": "chart", "price": 15, "weeks": 2 },
+    { "id": "seo", "title": "سئوی فنی", "description": "بهینه‌سازی موتور جستجو", "icon": "search", "price": 5, "weeks": 0.5, "types": ["corporate", "shop"] },
+    { "id": "chat", "title": "گفتگوی آنلاین", "description": "پشتیبانی لحظه‌ای", "icon": "chat", "price": 10, "weeks": 1 },
+    { "id": "notify", "title": "اعلان و پیامک", "description": "اطلاع‌رسانی به کاربران", "icon": "bell", "price": 6, "weeks": 0.5 },
+    { "id": "cms", "title": "پنل مدیریت محتوا", "description": "ویرایش بدون برنامه‌نویس", "icon": "edit", "price": 12, "weeks": 1.5, "types": ["corporate", "shop", "mobile"] },
+    { "id": "multilang", "title": "چندزبانه", "description": "فارسی، انگلیسی و ...", "icon": "lang", "price": 9, "weeks": 1 },
+    { "id": "api", "title": "اتصال به سرویس‌های دیگر", "description": "ERP، CRM و API", "icon": "link", "price": 14, "weeks": 2 },
+    { "id": "security", "title": "امنیت پیشرفته", "description": "لاگ، دسترسی و پشتیبان‌گیری", "icon": "shield", "price": 10, "weeks": 1, "types": ["enterprise", "mobile", "shop"] }
+  ],
+  "urgency": [
+    { "id": "relaxed", "title": "بدون عجله", "description": "زمان‌بندی انعطاف‌پذیر", "icon": "calendar", "priceMultiplier": 0.95, "timeMultiplier": 1.2 },
+    { "id": "normal", "title": "عادی", "description": "زمان‌بندی استاندارد", "icon": "clock", "priceMultiplier": 1, "timeMultiplier": 1 },
+    { "id": "urgent", "title": "فوری", "description": "تیم اختصاصی و تحویل سریع‌تر", "icon": "bolt", "priceMultiplier": 1.35, "timeMultiplier": 0.7 }
+  ]
+}
